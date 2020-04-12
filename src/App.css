@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Markazi+Text&display=swap');
+
+/* 
+colors:
+
+chart 1:
+pink: #D151AB
+violet: #7133C3
+blanc cassé: #FDFCFF
+
+
+*/
+
+* {
+  margin : 0;
+  font-family: 'Markazi Text', 'Roboto', 'Lato';
+  /* border: 0.5px blue solid; */
+}
+
+html {
+  width: 100vw;
+  height: fit-content;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+p, h1, h2, h3, h4, a {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Admin css */
+
+.flex-column-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav-bar {
+  width: 80%;
+  margin: 40px 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border: solid black 0.5px;
+}
+
+textarea {
+  width: 70%;
+  height: 100px;
+  text-align: center;
+}
+
+.delete-button {
+  margin: 15px;
+  margin-left: 150px;
+}
+
+.li-language {
+  border-bottom: 0.5px solid black;
+  width: 400px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-form input {
+  text-align: center;
+}
+
+/* quelques éléments des pages d'admin sont stylisés dans la partie ci dessous, notamment la partie "table"  */
+
+/* Main page */
+
+
+
+.app-div {
+  overflow-x: hidden;
+}
+
+.home-div {
+  min-height: 100vh;
+  width: 90%;
+  background-color: #FDFCFF;
+  padding: 0 5% 5% 5%;
+}
+
+.language-selection {
+  margin-left: 20px;
+}
+
+.language-option {
+  background-color: #7133C3;
+}
+
+.text-option {
+  color: white;
+
+}
+
+
+.home-nav {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.website-logo {
+  /* height: 50px; */
+  position: absolute;
+  top: 10px;
+  left: 43%;
+  width: 14%;
+  /* max-width: 90px; */
+  z-index: 1;
+}
+
+
+@media screen and (min-width: 1000px) {
+  .website-logo {
+    position: absolute;
+    top: 10px;
+    left: 48%;
+    width: 4%;
+    /* max-width: 140px; */
+    z-index: 1;
+  }
+}
+
+
+.home-div * {
+  color: #7133C3;
+}
+
+.home-content {
+  height: fill;
+  z-index: 2;
+}
+
+h1 {
+  z-index: 2;
+  background-color: #FDFCFF;
+  box-shadow: 10px 10px 10px #FDFCFF, -10px -10px 10px #FDFCFF;
+}
+
+.presentation-div {
+  z-index: 2;
+  width: fill;
+  padding: 5%;
+  background-image: linear-gradient(155deg,#7133C3 60%, #D151AB);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.presentation-par {
+  color: #FDFCFF;
+
+  
+}
+
+.gen-cond-link {
+   color: #FDFCFF;
+   font-weight: bolder;
+   margin-top: 30px;
+}
+
+.enter-btn-1 {
+  border-radius: 15px;
+  background-image: linear-gradient(155deg,#7133C3 60%, #D151AB);
+  color:#FDFCFF;
+  padding: 10px 20px;
+}
+
+/* form-div */
+
+.form-div {
+  min-height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(155deg,#7133C3 60%, #D151AB);
+}
+
+.form-div * {
+  color: #FDFCFF;
+}
+
+.form-div > form {
+  height: 90%;
+  padding: 5% 0;
+}
+
+.form-component {
+  display: flex;
+  flex-direction: row;
+  width: 94%;
+  max-width: 800px;
+  margin: 3%;
+  background-color: #FDFCFF;
+  height: fit-content;
+  border-radius: 15px; 
+}
+
+.form-component * {
+  color: #7133C3 ;
+}
+
+
+.form-component > div {
+  width: 50%;
+  margin: 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-component h4 {
+  margin: 5% 0;
+}
+
+.form-component p {
+  margin: 8% 0;
+}
+
+.input-div {
+  width: 85%;
+  max-width: 200px;
+  height: 27%;
+  padding: 0 7.5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+
+
+.input-div > p {
+  text-align: right;
+  margin-left: 6%;
+}
+
+.enter-btn-2 {
+  border-radius: 15px;
+  background-color: #FDFCFF;
+  color: #7133C3;
+  padding: 10px 20px;
+  margin: 20px;
+}
+
+.form-signin {
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+}
+
+/* list-div */
+
+#list-div {
+  min-height: 50vh;
+  /* height: 100vh; */
+  background-color:  #FDFCFF;
+  padding: 10% 0;
+}
+
+#list-div td, #list-div tr, #list-div a, #list-div h2, #list-div p {
+  color: #7133C3
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 5%;
+}
+
+table > * {
+  text-align: center;
+}
+
+th, td {
+  border: 0.5px solid #7133C3;
+  max-width: 17%;
+}
+
+table a {
+  text-decoration: underline;
+}
+
+.FontIcon {
+  margin-top: 3.5%;
+}
+
+.contact-div {
+  margin-top: 15%;
+  width: 100%;
+}
+
+.logo {
+  margin-top: 20px;
+  height: 100px;
+}
+
+/* general conditions */
+
+.gen-cond-div {
+  padding: 10%;
+  background-color: #FDFCFF;
+}
+
+.border-div {
+  padding: 2px;
+  background-image: linear-gradient(155deg,#7133C3 70%, #D151AB);
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.gen-cond-par1 {
+  background-color: #FDFCFF;
+  border-radius: 15px 15px 0 0;
+  padding: 5%;
+  color: #7133C3;
+}
+
+
+.gen-cond-par2 {
+  background-color: #FDFCFF;
+  border-radius: 0 0 15px 15px;
+  padding: 5%;
+  color: #7133C3;
+}
