@@ -25,6 +25,7 @@ const AdminHome = (props) => {
                 <Link to='/admin/create-contact'>Add a new Contact</Link>
                 <Link to='/admin/list-languages'>List of languages</Link>
                 <Link to='/admin/create-language'>Add a new language</Link>
+                <Link to='/admin/safety-advice'>Safety advice</Link>
                 <button onClick={handleSignout}>Log Out</button>
             </div>
         </div>

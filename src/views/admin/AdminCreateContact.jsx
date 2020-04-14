@@ -11,7 +11,9 @@ const AdminCreateContact = (props) => {
     const onChange = async e => {
         // console.log(e.target.type, e.target.name, e.target.checked)
         e.target.type === "checkbox"? setContact({...contact, [e.target.name]: e.target.checked}) :
-        setContact({...contact, [e.target.name]: e.target.value})
+        setContact({...contact, [e.target.name]: e.target.value});
+
+        console.log(contact);
     }
 
     const onSubmit = async e => {
