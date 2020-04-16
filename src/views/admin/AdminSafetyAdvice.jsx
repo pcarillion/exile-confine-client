@@ -6,37 +6,69 @@ import Nav from './AdminHome'
 
 const AdminAddAdviceLanguage = () => {
 
-    const [advice, setAdvice] = useState({})
     
+    const [allLanguages, setAllLanguages] = useState([])
+    useEffect(() => {
+        const rv = APIHandler.get("inner-text/all")
+        .then (res => 
+            {console.log(res.data)
+                setAllLanguages(res.data)
+                // defaultLanguage(res.data)
+            })
+        }, [])
+        
+    const [languageId, setLanguageId] = useState("")
+    const handleChange = async e => {
+        setLanguageId(e.target.value)
+        console.log(languageId)
+    }
+        
+    const [language, setLanguage] = useState({})
+    useEffect(() => {
+        console.log(languageId)
+        const rv = APIHandler.get(`inner-text/${languageId}`)
+            .then(res => {
+                console.log(res.data)
+                setLanguage(res.data)
+            })
+    }, [languageId])
+                
+    const [advice, setAdvice] = useState({})
     const onChange = async e => {
-        setAdvice({...advice, [e.target.name] : e.target.value})
+        setAdvice({ ...advice, [e.target.name]: e.target.value })
         console.log(advice);
     }
-
+                
     const onSubmit = async e => {
         e.preventDefault()
-        try{
+        try {
             await APIHandler.post('/safetyAdvice/create', advice);
             console.log("done");
-        }catch (err) {
+        } catch (err) {
             console.log(err);
         }
     }
-
-
+                
+                
     return(
         <div>
             <Nav/>
             <form className='admin-form flex-column-center' onChange={onChange} onSubmit={onSubmit} >
                 
-
                 <h3>Add new language for safety advice</h3>
                 <p>Please translate literaly the terms between quotation marks ("")</p>
                 <p>(all fields required)</p>
                 
                 <div className="flex-column-center">
-                    <label htmlFor="language">Language</label>
-                    <input type="text" name="language"/>
+                <select style={{color: "white"}} className="language-option"  name="selLanguageId" onChange={handleChange}>
+                    {allLanguages.map((lang, i) => {
+                        return lang.language === language.language ? 
+                        <option style={{color: "white"}} className="text-option" name="selLanguageId" value={lang._id} selected>{lang.language}</option>:
+                        <option style={{color: "white"}} className="text-option" name="selLanguageId" value={lang._id}>{lang.language}</option> 
+                    })}
+                </select>
+                    {/* <label htmlFor="language">Language</label>
+                    <input type="text" name="language"/> */}
                     <label htmlFor="symptomsTitle">"Symptoms"</label>
                     <input type="text" name="symptomsTitle"/>
                     <label htmlFor="symptomFever">"Fever"</label>
@@ -56,7 +88,7 @@ const AdminAddAdviceLanguage = () => {
                     <input type="text" name="preventionWash"/>
                     <label htmlFor="preventionContact">"Avoid contact with sick people"</label>
                     <input type="text" name="preventionContact"/>
-                    <label htmlFor="preventionTouch">"Don't Touch eyes, nose or mouth with unwashed hands</label>
+                    <label htmlFor="preventionTouch">"Don't Touch eyes, nose or mouth with unwashed hands"</label>
                     <input type="text" name="preventionTouch"/>
                     <label htmlFor="preventionMask">"Wear mask"</label>
                     <input type="text" name="preventionMask"/>

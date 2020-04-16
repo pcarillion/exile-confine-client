@@ -42,6 +42,8 @@ const AdminCreateLanguage = (props) => {
             <input type="text" name="language"/>
             <label htmlFor="websiteName">Main title</label>
             <input type="text" name="websiteName"/>
+            <label htmlFor="advice">link "See safety advice"</label>
+            <input type="text" name="advice"/>
             <label htmlFor="enter">Button "enter"</label>
             <input type="text" name="enter"/>
             <label htmlFor="websitePresentation">Website Presentation and general conditions</label>

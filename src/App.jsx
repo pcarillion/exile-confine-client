@@ -30,7 +30,7 @@ function App() {
         <Route exact path="/" component={Home} />
         
         <Route path="/general-conditions/:id" component={GenConditions}/>
-        <Route path="/safety-advice/" component={SafetyAdvice} />
+        <Route path="/safety-advice/:id" component={SafetyAdvice} />
         <Route exact path="/home/:id" component={Home} />
 
 

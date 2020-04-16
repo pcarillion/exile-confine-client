@@ -348,3 +348,27 @@ table a {
   padding: 5%;
   color: #7133C3;
 }
+
+.safety-title{
+  margin-top: 1em;
+ font-size: 40px;
+}
+
+.safety-advice-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 2em;
+}
+
+.safety-advice{
+  width: 10%;
+  text-align: center;
+  /* align-items: center; */
+
+}
+
+.safety-advice img{
+  width: 100%;
+}
