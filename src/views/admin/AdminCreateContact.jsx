@@ -27,6 +27,7 @@ const AdminCreateContact = (props) => {
     }
 
     const onSubmit = async e => {
+        console.log(contact)
         e.preventDefault()
         try {
             await APIHandler.post('/contact/create', contact);

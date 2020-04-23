@@ -83,7 +83,7 @@ const Home = (props) => {
 
     const  onChange = e => {
         if (e.target.name === "time") setTime(e.target.value);
-        if (e.target.name === "service") setTime(e.target.value);
+        if (e.target.name === "service") setService(e.target.value);
         if (e.target.name === "country") setCountry(e.target.value);
     }
 
@@ -91,7 +91,25 @@ const Home = (props) => {
     
     useEffect(() => {
         setResults(allContacts.filter((contact) => {
-            console.log(`-${contact.language}-`, `-${language.language}-`)
+            console.log(contact.country === country, contact.language === language._id)
+            console.log("service: ", service)
+            console.log("time : ", time)
+            console.log(
+                service === "translation" && contact.isTranslator ||
+                service === "callAmbulance"  && contact.callAmbulance ||
+                service === "psySupport"  && contact.psySupport ||
+                service === "medecinesRequest"  && contact.needsMedecines ||
+                service === "supermarket"  && contact.needsSupermarket ||
+                service === "other"  && contact.needsElse
+            );
+            console.log(
+                time === "from0to4" && contact.from0to4 || 
+                time === "from4to8" && contact.from4to8 ||
+                time === "from8to12" && contact.from8to12 ||
+                time === "from12to16" && contact.from12to16 ||
+                time === "from16to20" && contact.from16to20 ||
+                time === "from20to24" && contact.from20to24
+            );
             return (
                 time === "from0to4" && contact.from0to4 || 
                 time === "from4to8" && contact.from4to8 ||
@@ -284,7 +302,7 @@ const Home = (props) => {
                             <tr>
                                 <td><a href={`https://wa.me/${changeNumToWhats(contact.phone)}`}>{checkIfTrue(contact.isWhatsApp)}</a></td>
                                 <td><a href={`tel:${contact.phone}`}><FontAwesomeIcon className="FontIcon" icon={faPhone}/></a></td>
-                                <td>{contact.language}</td>
+                                <td>{language.language}</td>
                                 <td>{contact.city}</td>
                                 <td>{contact.name}</td>
                             </tr>
@@ -307,7 +325,7 @@ const Home = (props) => {
                             <tr>
                                 <td>{contact.name}</td>
                                 <td>{contact.city}</td>
-                                <td>{contact.language}</td>
+                                <td>{language.language}</td>
                                 <td><a href={`tel:${contact.phone}`}><FontAwesomeIcon className="FontIcon" icon={faPhone}/></a></td>
                                 <td><a href={`https://wa.me/${changeNumToWhats(contact.phone)}`}>{checkIfTrue(contact.isWhatsApp)}</a></td>
                             </tr>

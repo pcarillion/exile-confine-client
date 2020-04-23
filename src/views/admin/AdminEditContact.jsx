@@ -41,6 +41,7 @@ const AdminEditContact = (props) => {
     }
 
     const onSubmit = async e => {
+        console.log(contact)
         e.preventDefault()
         try {
             await APIHandler.patch(`/contact/edit/${contact._id}`, contact);
@@ -81,7 +82,7 @@ const AdminEditContact = (props) => {
                     <select name="language" >
                         <option></option>
                     {allLanguages.map((lang, i) => {
-                        return lang.language === contact.language ? 
+                        return lang._id === contact.language ? 
                         <option name="language" value={lang._id} selected>{lang.language}</option>:
                         <option name="language" value={lang._id}>{lang.language}</option> 
                     })}
