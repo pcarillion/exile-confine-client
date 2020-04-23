@@ -4,28 +4,17 @@ import {withRouter} from 'react-router-dom'
 import APIHandler from './../../api/APIHandler'
 
 import Nav from './AdminHome'
+import { faLanguage } from '@fortawesome/free-solid-svg-icons'
 
 
 const AdminHome = (props) => {
 
     
-    
-    const [innerText, setInnerText] = useState({})
-    useEffect(() => {
-        const rv = APIHandler.get(`inner-text/all`)
-        .then (res => {
-            // console.log(res.data)
-            setInnerText(res.data)
-        })
-    },[])
-    console.log(innerText)
-    
     const [allContacts, setAllContacts] = useState([])
     useEffect(() => {
         const rv = APIHandler.get("contact/all")
         .then (res => 
-            {console.log(res.data)
-            setAllContacts(res.data)
+            {setAllContacts(res.data)
         })
     },[])
 
@@ -48,6 +37,16 @@ const AdminHome = (props) => {
         // props.history.push('/admin/list-contacts')
     }
 
+
+    const findLanguageName = async (id) => {
+        console.log(id)
+        const rv = APIHandler.get(`inner-text/${id}`)
+            .then( res => {
+                    return res.data.language
+            })
+    }
+
+  
     return (
         <div>
             <Nav/>
@@ -70,7 +69,8 @@ const AdminHome = (props) => {
                                 <td> <Link to={`/admin/edit-contact/${contact._id}`}>{contact.name}</Link></td>
                                 <td>{contact.city}</td>
                                 <td>{contact.phone}</td>
-                                <td>{contact.language}</td>
+                                <td>{findLanguageName(contact.language)}</td>
+                                {/* <td>{`-${findLanguageName(contact.language)}-`}</td> */}
                                 <td>{checkIfTrue(contact.isWhatsApp)}</td>
                                 <td><button onClick={() => deleteContact(contact._id)}>X</button></td>
                             </tr>
