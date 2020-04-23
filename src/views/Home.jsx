@@ -200,10 +200,10 @@ const Home = (props) => {
             <div className="form-div" id="form-div">
                     <form onChange={onChange} className="flex-column-center">
                     {language.timeSchedule? <h2>{language.timeSchedule}</h2>:<h2>Time Schedule</h2>}
-                    <div className="form-component">
+                    <div className="form-component" id="form-component1">
                         
-                        <div>
-                            <div>
+                        <div className='form-component1-div'>
+                            <div >
                                 {language.morning? <h4>{language.morning}</h4>:<h4>Morning</h4>}
                                 <div className="input-div">
                                     <input type="radio" name="time" value="from0to4"/>
@@ -237,12 +237,14 @@ const Home = (props) => {
                             </div>
                         </div>
 
-                        <div>
+                        <div id="country-div">
                             <h4>{language.country? <p>{language.country}</p>: <p>country</p>}</h4>
-                            <input type="radio" name="country" value="France"/>
-                            {language.France? <p>{language.France}</p>: <p>France</p>}
-                            <input type="radio" name="country" value="Malte"/>
-                            {language.Malte? <p>{language.Malte}</p>: <p>Malte</p>}
+                            <div>
+                                <input type="radio" name="country" value="France"/>
+                                {language.France? <p>{language.France}</p>: <p>France</p>}
+                                <input type="radio" name="country" value="Malte"/>
+                                {language.Malte? <p>{language.Malte}</p>: <p>Malte</p>}
+                            </div>
                         </div>
 
                     </div>
