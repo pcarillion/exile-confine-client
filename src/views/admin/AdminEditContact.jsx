@@ -19,12 +19,23 @@ const AdminEditContact = (props) => {
     console.log(rv)
    }, [])
 
+   const [allLanguages, setAllLanguages] = useState([])
+    useEffect(() => {
+        const rv = APIHandler.get("inner-text/all")
+        .then (res => 
+            {console.log(res.data)
+                setAllLanguages(res.data)
+                // defaultLanguage(res.data)
+            })
+        }, [])
+        
+
    const onClick = async e => {
        console.log("clicked!")
    }
 
     const onChange = async e => {
-        console.log(e.target.type, e.target.name, e.target.checked)
+        console.log(e.target.value, e.target.name, e.target.checked)
         e.target.type === "checkbox"? setContact({...contact, [e.target.name]: e.target.checked}) :
         setContact({...contact, [e.target.name]: e.target.value})
     }
@@ -52,8 +63,33 @@ const AdminEditContact = (props) => {
                     <input type="text" name="name" defaultValue={contact.name}/>
                     <label htmlFor="city">City</label>
                     <input type="text" name="city" defaultValue={contact.city}/>
-                    <label htmlFor="language">Language(s)</label>
-                    <input type="text" name="language" defaultValue={contact.language}/>
+                    <select name="country">
+                        <option></option>
+                        {
+                            contact.country === "France" ?
+                            <option name="country" value="France" selected>France</option>:
+                            <option name="country" value="France" >France</option>
+                        }
+                        {
+                            contact.country === "Malte" ?
+                            <option name="country" value="Malte" selected>Malte</option>:
+                            <option name="country" value="Malte" >Malte</option>
+                        }
+                    </select>
+
+                    <label htmlFor="language">Language</label>
+                    <select name="language" >
+                        <option></option>
+                    {allLanguages.map((lang, i) => {
+                        return lang.language === contact.language ? 
+                        <option name="language" value={lang._id} selected>{lang.language}</option>:
+                        <option name="language" value={lang._id}>{lang.language}</option> 
+                    })}
+                    </select>
+
+                    <label htmlFor="otherLanguage">Other languages</label>
+                    <input type="text" name="otherLanguage"/>
+
                     <label htmlFor="phone">Phone</label>
                     <input type="text" name="phone" defaultValue={contact.phone}/>
                     <label htmlFor="isWhatsApp">Does this phone number work on WhatsApp?</label>

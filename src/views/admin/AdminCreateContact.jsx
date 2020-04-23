@@ -8,8 +8,18 @@ const AdminCreateContact = (props) => {
 
    const [contact, setContact] = useState({})
 
+   const [allLanguages, setAllLanguages] = useState([])
+    useEffect(() => {
+        const rv = APIHandler.get("inner-text/all")
+        .then (res => 
+            {console.log(res.data)
+                setAllLanguages(res.data)
+                // defaultLanguage(res.data)
+            })
+        }, [])
+
     const onChange = async e => {
-        // console.log(e.target.type, e.target.name, e.target.checked)
+        console.log(e.target.name, e.target.value, e.target.checked)
         e.target.type === "checkbox"? setContact({...contact, [e.target.name]: e.target.checked}) :
         setContact({...contact, [e.target.name]: e.target.value});
 
@@ -39,8 +49,25 @@ const AdminCreateContact = (props) => {
                     <input type="text" name="name"/>
                     <label htmlFor="city">City</label>
                     <input type="text" name="city"/>
-                    <label htmlFor="language">Language(s)</label>
-                    <input type="text" name="language"/>
+                    <label htmlFor="country">Pays</label>
+                    <select name="country">
+                        <option></option>
+                        <option name="country" value="France">France</option>
+                        <option name="country" value="Malte">Malte</option>
+                    </select>
+
+                    <label htmlFor="language">Language</label>
+                    <select  name="language">
+                        <option></option>
+                    {allLanguages.map((lang, i) => {
+                        return <option name="language" value={lang._id}>{lang.language}</option> 
+                    })}
+                    </select>
+
+                    <label htmlFor="otherLanguage">Other languages</label>
+                    <input type="text" name="otherLanguage"/>
+
+                    
                     <label htmlFor="phone">Phone</label>
                     <input type="text" name="phone"/>
                     <label htmlFor="isWhatsApp">Does this phone number work on WhatsApp?</label>
