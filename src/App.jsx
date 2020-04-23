@@ -19,6 +19,7 @@ import AdminListLanguages from './views/admin/AdminListLanguages'
 import AdminCreateLanguage from './views/admin/AdminCreateLanguage'
 import AdminEditLanguage from './views/admin/AdminEditLanguage'
 import AdminAddAdviceLanguage from'./views/admin/AdminSafetyAdvice'
+import AdminSafetyList from'./views/admin/AdminSafetyList'
 
 
 import NotFound from "./views/notFound"; 
@@ -44,6 +45,7 @@ function App() {
         <ProtectedRoute path='/admin/create-language' component={AdminCreateLanguage}/>
         <ProtectedRoute path='/admin/edit-language/:id' component={AdminEditLanguage}/>
         <ProtectedRoute path='/admin/safety-advice/' component={AdminAddAdviceLanguage}/>
+        <ProtectedRoute path='/admin/list-safety-advice/' component={AdminSafetyList}/>
 
         <Route path="*" component={NotFound} />
 

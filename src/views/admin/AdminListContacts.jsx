@@ -8,14 +8,27 @@ import Nav from './AdminHome'
 
 const AdminHome = (props) => {
 
+    
+    
+    const [innerText, setInnerText] = useState({})
+    useEffect(() => {
+        const rv = APIHandler.get(`inner-text/all`)
+        .then (res => {
+            // console.log(res.data)
+            setInnerText(res.data)
+        })
+    },[])
+    console.log(innerText)
+    
     const [allContacts, setAllContacts] = useState([])
     useEffect(() => {
         const rv = APIHandler.get("contact/all")
         .then (res => 
             {console.log(res.data)
-            setAllContacts(res.data)})
-        console.log(rv)
-    }, [])
+            setAllContacts(res.data)
+        })
+    },[])
+
 
     function checkIfTrue(bool){
         if (bool === true) {

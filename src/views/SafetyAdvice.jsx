@@ -1,8 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import APIHandler from './../api/APIHandler'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 const SafetyAdvice = (props) => {
+
+    const [innerText, setInnerText] = useState({})
+    useEffect(() => {
+        const rv = APIHandler.get(`inner-text/${props.match.params.id}`)
+        .then(res => {
+            console.log(res.data)
+            setInnerText(res.data)
+        })
+    },[])
 
 
     const [allLanguage, setAllLanguage] = useState({})
@@ -17,9 +26,9 @@ const SafetyAdvice = (props) => {
     // console.log(allLanguage)
 
     return(
-        <div>
+        <div className="safety-advice-container">
             <p className="safety-title">{allLanguage.symptomsTitle}</p>
-            <div className="safety-advice-container">
+            <div className="safety-advice-box">
                 <div className="safety-advice">
                     <img src="./../../img/safety/safetyFever.png" alt="" />
                     <p>{allLanguage.symptomFever}</p>
@@ -43,7 +52,7 @@ const SafetyAdvice = (props) => {
             </div>
             
             <p className="safety-title">{allLanguage.preventionTitle}</p>
-            <div className="safety-advice-container">
+            <div className="safety-advice-box">
                 <div className="safety-advice">
                     <img src="./../../img/safety/preventionWash.png" alt="" />
                     <p>{allLanguage.preventionWash}</p>
@@ -67,7 +76,7 @@ const SafetyAdvice = (props) => {
             </div>
             
             <p className="safety-title">{allLanguage.infectedTitle}</p>
-            <div className="safety-advice-container">
+            <div className="safety-advice-box">
                 <div className="safety-advice">
                     <img src="./../../img/safety/infectedHome.png" alt="" />
                     <p>{allLanguage.infectedHome}</p>
@@ -89,6 +98,7 @@ const SafetyAdvice = (props) => {
                     <p>{allLanguage.infectedClean}</p>
                 </div>
             </div>
+            <Link className="safety-back-btn" to={`/home/${props.match.params.id}`}>{innerText.back}</Link>
         </div>
     )
 }
