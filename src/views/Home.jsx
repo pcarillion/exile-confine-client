@@ -82,6 +82,7 @@ const Home = (props) => {
     const [country, setCountry] = useState("France")
 
     const  onChange = e => {
+        console.log(e.target.value)
         if (e.target.name === "time") setTime(e.target.value);
         if (e.target.name === "service") setService(e.target.value);
         if (e.target.name === "country") setCountry(e.target.value);
@@ -139,7 +140,8 @@ const Home = (props) => {
     , ([
         time,
         service,
-        language
+        language, 
+        country
     ]))
 
     function changeNumToWhats(number) {
@@ -302,7 +304,7 @@ const Home = (props) => {
                             <tr>
                                 <td><a href={`https://wa.me/${changeNumToWhats(contact.phone)}`}>{checkIfTrue(contact.isWhatsApp)}</a></td>
                                 <td><a href={`tel:${contact.phone}`}><FontAwesomeIcon className="FontIcon" icon={faPhone}/></a></td>
-                                <td>{language.language}</td>
+                                <td>{`${language.language}, ${contact.otherLanguage}`}</td>
                                 <td>{contact.city}</td>
                                 <td>{contact.name}</td>
                             </tr>
@@ -325,7 +327,7 @@ const Home = (props) => {
                             <tr>
                                 <td>{contact.name}</td>
                                 <td>{contact.city}</td>
-                                <td>{language.language}</td>
+                                <td>{`${language.language}, ${contact.otherLanguage}`}</td>
                                 <td><a href={`tel:${contact.phone}`}><FontAwesomeIcon className="FontIcon" icon={faPhone}/></a></td>
                                 <td><a href={`https://wa.me/${changeNumToWhats(contact.phone)}`}>{checkIfTrue(contact.isWhatsApp)}</a></td>
                             </tr>
