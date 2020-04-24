@@ -18,6 +18,8 @@ const AdminHome = (props) => {
         })
     },[])
 
+console.log(allContacts)
+
 
     function checkIfTrue(bool){
         if (bool === true) {
@@ -37,14 +39,21 @@ const AdminHome = (props) => {
         // props.history.push('/admin/list-contacts')
     }
 
+    const [contacts, setContacts] = useState([])
 
     const findLanguageName = async (id) => {
         console.log(id)
-        const rv = APIHandler.get(`inner-text/${id}`)
+        const rv = await APIHandler.get(`inner-text/${id}`)
             .then( res => {
-                    return res.data.language
+                    // return res.data.language
+                    setContacts([{...allContacts, [res.data] : res.data}])
+                    console.log(res.data)
             })
     }
+    console.log(allContacts)
+    console.log(contacts[0])
+
+
 
   
     return (
@@ -69,7 +78,7 @@ const AdminHome = (props) => {
                                 <td> <Link to={`/admin/edit-contact/${contact._id}`}>{contact.name}</Link></td>
                                 <td>{contact.city}</td>
                                 <td>{contact.phone}</td>
-                                <td>{findLanguageName(contact.language)}</td>
+                        <td value = {findLanguageName(contact.language)}>{contact.language}</td>
                                 {/* <td>{`-${findLanguageName(contact.language)}-`}</td> */}
                                 <td>{checkIfTrue(contact.isWhatsApp)}</td>
                                 <td><button onClick={() => deleteContact(contact._id)}>X</button></td>
@@ -77,7 +86,7 @@ const AdminHome = (props) => {
                         ))}
 
                 </tbody>
-</table>
+            </table>
         </div>
     )
 }
