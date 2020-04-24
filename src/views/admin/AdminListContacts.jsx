@@ -18,7 +18,7 @@ const AdminHome = (props) => {
         })
     },[])
 
-console.log(allContacts)
+// console.log(allContacts)
 
 
     function checkIfTrue(bool){
@@ -41,19 +41,40 @@ console.log(allContacts)
 
     const [contacts, setContacts] = useState([])
 
-    const findLanguageName = async (id) => {
-        console.log(id)
-        const rv = await APIHandler.get(`inner-text/${id}`)
-            .then( res => {
-                    // return res.data.language
-                    setContacts([{...allContacts, [res.data] : res.data}])
-                    console.log(res.data)
+    // const findLanguageName = async (id) => {
+    //     console.log(id)
+    //     const rv = await APIHandler.get(`inner-text/${id}`)
+    //         .then( res => {
+    //                 // return res.data.language
+    //                 setContacts([{...allContacts, [res.data] : res.data}])
+    //                 console.log(res.data)
+    //         })
+    // }
+    // console.log(allContacts)
+    // console.log(contacts[0])
+
+    var result
+
+    const [languageTable, setLanguageTable] = useState({})
+    useEffect(() => {
+        const rv = APIHandler.get('inner-text/all')
+            .then ( res => {
+                res.data.map((language) => {
+                    result = {...result, [language._id] : language.language}
+                    setLanguageTable(result)
+                })
             })
+    }, [])
+
+
+
+    function setLanguageName(id) {
+        for (const language in languageTable) {
+            if (language === id) {
+                return languageTable[language]
+            }
+        }
     }
-    console.log(allContacts)
-    console.log(contacts[0])
-
-
 
   
     return (
@@ -63,8 +84,10 @@ console.log(allContacts)
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>City</th>
+                        <th>Country</th>
                         <th>Phone Number</th>
                         <th>Language</th>
                         <th>WhatsApp</th>
@@ -75,11 +98,12 @@ console.log(allContacts)
 
                         {allContacts.map((contact, i) => (
                             <tr>
+                                <td>{i +1}</td>
                                 <td> <Link to={`/admin/edit-contact/${contact._id}`}>{contact.name}</Link></td>
                                 <td>{contact.city}</td>
+                                <td>{contact.country}</td>
                                 <td>{contact.phone}</td>
-                        <td value = {findLanguageName(contact.language)}>{contact.language}</td>
-                                {/* <td>{`-${findLanguageName(contact.language)}-`}</td> */}
+                                <td>{setLanguageName(contact.language)}</td>
                                 <td>{checkIfTrue(contact.isWhatsApp)}</td>
                                 <td><button onClick={() => deleteContact(contact._id)}>X</button></td>
                             </tr>
