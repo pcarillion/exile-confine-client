@@ -7,10 +7,8 @@ import Nav from './AdminHome'
 
 const AdminEditContact = (props) => {
 
-   const [contact, setContact] = useState({
-        
-   })
-
+   const [contact, setContact] = useState({})
+    
    useEffect(() => {
     const rv = APIHandler.get(`contact/${props.match.params.id}`)
     .then (res => 
@@ -64,6 +62,7 @@ const AdminEditContact = (props) => {
                     <input type="text" name="name" defaultValue={contact.name}/>
                     <label htmlFor="city">City</label>
                     <input type="text" name="city" defaultValue={contact.city}/>
+                    <label htmlFor="country">Country</label>
                     <select name="country">
                         <option></option>
                         {

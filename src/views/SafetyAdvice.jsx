@@ -98,6 +98,23 @@ const SafetyAdvice = (props) => {
                     <p>{allLanguage.infectedClean}</p>
                 </div>
             </div>
+
+            <div className="safety-info-box">
+                <p>{allLanguage.information1Title}</p>
+                <div className="safety-info">
+                    <p>{allLanguage.information1}</p>
+                </div>
+
+                <p>{allLanguage.information2Title}</p>
+                <div className="safety-info">
+                    <p>{allLanguage.information2}</p>
+                </div>
+
+                <p>{allLanguage.information3Title}</p>
+                <div className="safety-info">
+                    <p>{allLanguage.information3}</p>
+                </div>
+            </div>
             <Link className="safety-back-btn" to={`/home/${props.match.params.id}`}>{innerText.back}</Link>
         </div>
     )

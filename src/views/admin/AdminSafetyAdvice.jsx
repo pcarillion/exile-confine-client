@@ -11,16 +11,19 @@ const AdminAddAdviceLanguage = () => {
     useEffect(() => {
         const rv = APIHandler.get("inner-text/all")
         .then (res => 
-            {console.log(res.data)
+            {console.log(res.data[0]._id)
+                // setLanguageId(res.data[0]._id)
+                setAdvice({...advice, ["selLanguageId"] : res.data[0]._id})
                 setAllLanguages(res.data)
                 // defaultLanguage(res.data)
             })
         }, [])
+        // console.log(allLanguages)
         
     const [languageId, setLanguageId] = useState("")
     const handleChange = async e => {
         setLanguageId(e.target.value)
-        console.log(languageId)
+        // console.log(languageId)
     }
         
     const [language, setLanguage] = useState({})
@@ -28,7 +31,7 @@ const AdminAddAdviceLanguage = () => {
         console.log(languageId)
         const rv = APIHandler.get(`inner-text/${languageId}`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setLanguage(res.data)
             })
     }, [languageId])
@@ -36,7 +39,7 @@ const AdminAddAdviceLanguage = () => {
     const [advice, setAdvice] = useState({})
     const onChange = async e => {
         setAdvice({ ...advice, [e.target.name]: e.target.value })
-        console.log(advice);
+        // console.log(advice);
     }
                 
     const onSubmit = async e => {
@@ -60,57 +63,75 @@ const AdminAddAdviceLanguage = () => {
                 <p>(all fields required)</p>
                 
                 <div className="flex-column-center">
-                <select style={{color: "white"}} className="language-option"  name="selLanguageId" onChange={handleChange}>
-                    {allLanguages.map((lang, i) => {
-                        return lang.language === language.language ? 
-                        <option style={{color: "white"}} className="text-option" name="selLanguageId" value={lang._id} selected>{lang.language}</option>:
-                        <option style={{color: "white"}} className="text-option" name="selLanguageId" value={lang._id}>{lang.language}</option> 
-                    })}
-                </select>
+                    <select style={{ color: "white" }} className="language-option" name="selLanguageId" onChange={handleChange}>
+                        {allLanguages.map((lang, i) => {
+                            return lang.language === language.language ?
+                                <option style={{ color: "white" }} className="text-option" name="selLanguageId" value={lang._id} selected>{lang.language}</option> :
+                                <option style={{ color: "white" }} className="text-option" name="selLanguageId" value={lang._id}>{lang.language}</option>
+                        })}
+                    </select>
                     {/* <label htmlFor="language">Language</label>
                     <input type="text" name="language"/> */}
                     <label htmlFor="symptomsTitle">"Symptoms"</label>
-                    <input type="text" name="symptomsTitle"/>
+                    <input type="text" name="symptomsTitle" />
                     <label htmlFor="symptomFever">"Fever"</label>
-                    <input type="text" name="symptomFever"/>
+                    <input type="text" name="symptomFever" />
                     <label htmlFor="symptomCough">"Cough"</label>
-                    <input type="text" name="symptomCough"/>
+                    <input type="text" name="symptomCough" />
                     <label htmlFor="symptomBreath">"Shortness of breath"</label>
-                    <input type="text" name="symptomBreath"/>
+                    <input type="text" name="symptomBreath" />
                     <label htmlFor="symptomThroat">"Sore throat"</label>
-                    <input type="text" name="symptomThroat"/>
+                    <input type="text" name="symptomThroat" />
                     <label htmlFor="symptomHeadache">"Headache"</label>
-                    <input type="text" name="symptomHeadache"/>
+                    <input type="text" name="symptomHeadache" />
 
                     <label htmlFor="preventionTitle">"Prevention"</label>
-                    <input type="text" name="preventionTitle"/>
+                    <input type="text" name="preventionTitle" />
                     <label htmlFor="preventionWash">"Wash hands with water and soap/sanitizer, at least 20 seconds"</label>
-                    <input type="text" name="preventionWash"/>
+                    <input type="text" name="preventionWash" />
                     <label htmlFor="preventionContact">"Avoid contact with sick people"</label>
-                    <input type="text" name="preventionContact"/>
+                    <input type="text" name="preventionContact" />
                     <label htmlFor="preventionTouch">"Don't Touch eyes, nose or mouth with unwashed hands"</label>
-                    <input type="text" name="preventionTouch"/>
+                    <input type="text" name="preventionTouch" />
                     <label htmlFor="preventionMask">"Wear mask"</label>
-                    <input type="text" name="preventionMask"/>
+                    <input type="text" name="preventionMask" />
                     <label htmlFor="preventionCrowd">"Avoid crowded places"</label>
-                    <input type="text" name="preventionCrowd"/>
+                    <input type="text" name="preventionCrowd" />
 
                     <label htmlFor="infectedTitle">"Infected"</label>
-                    <input type="text" name="infectedTitle"/>
+                    <input type="text" name="infectedTitle" />
                     <label htmlFor="infectedHome">"Stay home"</label>
-                    <input type="text" name="infectedHome"/>
+                    <input type="text" name="infectedHome" />
                     <label htmlFor="infectedOthers">"Avoid contact with others"</label>
-                    <input type="text" name="infectedOthers"/>
+                    <input type="text" name="infectedOthers" />
                     <label htmlFor="infectedCover">"Cover your nose and mouth with tissue or elbow when sneezing"</label>
-                    <input type="text" name="infectedCover"/>
+                    <input type="text" name="infectedCover" />
                     <label htmlFor="infectedTissue">"Put tissue in trash bin and wash hands"</label>
-                    <input type="text" name="infectedTissue"/>
+                    <input type="text" name="infectedTissue" />
                     <label htmlFor="infectedClean">"Keep objects and surfaces clean"</label>
-                    <input type="text" name="infectedClean"/>
+                    <input type="text" name="infectedClean" />
+
+                    <br/>
+                    <label htmlFor="information1Titile">"Information 1 Title"</label>
+                    <input type="text" name="information1Title" />
+                    <label htmlFor="information1">"Information 1"</label>
+                    <textarea name="information1" />
+
+                    <br/>
+                    <label htmlFor="information2Titile">"Information 2 Title"</label>
+                    <input type="text" name="information2Title" />
+                    <label htmlFor="information2">"Information 2"</label>
+                    <textarea name="information2" />
+
+                    <br/>
+                    <label htmlFor="information3Titile">"Information 3 Title"</label>
+                    <input type="text" name="information3Title" />
+                    <label htmlFor="information3">"Information 3"</label>
+                    <textarea name="information3" />
 
                 </div>  
                 <br/> 
-                <button>Add language</button>
+                <button>Add advices</button>
             </form>
         </div>
     )

@@ -18,7 +18,7 @@ const AdminHome = (props) => {
         })
     },[])
 
-// console.log(allContacts)
+console.log(allContacts)
 
 
     function checkIfTrue(bool){
@@ -65,7 +65,7 @@ const AdminHome = (props) => {
                 })
             })
     }, [])
-
+    console.log(languageTable)
 
 
     function setLanguageName(id) {
