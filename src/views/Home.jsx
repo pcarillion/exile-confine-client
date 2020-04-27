@@ -18,7 +18,7 @@ const Home = (props) => {
     useEffect(() => {
         const rv = APIHandler.get("inner-text/all")
         .then (res => 
-            {console.log(res.data)
+            {
             setAllLanguages(res.data)
             defaultLanguage(res.data)
         })
@@ -28,11 +28,9 @@ const Home = (props) => {
     const [languageId, setLanguageId] = useState("")
     const handleChange = async e => {
         setLanguageId(e.target.value)
-        console.log(languageId)
     }
 
     const defaultLanguage = async (data) => {
-        console.log(data)
         if (props.match.params.id) {
             return setLanguageId(props.match.params.id)
         }
@@ -48,10 +46,9 @@ const Home = (props) => {
 
     const [language, setLanguage] = useState({})
     useEffect(() => {
-    console.log(languageId)
     const rv = APIHandler.get(`inner-text/${languageId}`)
     .then (res => 
-        {console.log(res.data)
+        {
         setLanguage(res.data)})
     }, [languageId])
 
@@ -64,9 +61,9 @@ const Home = (props) => {
     useEffect(() => {
         const rv = APIHandler.get("contact/all")
         .then (res => 
-            {console.log(res.data)
+            {
             setAllContacts(res.data)})
-        console.log(rv)
+
     }, [])
 
     function checkIfTrue(bool){
@@ -82,7 +79,6 @@ const Home = (props) => {
     const [country, setCountry] = useState("France")
 
     const  onChange = e => {
-        console.log(e.target.value)
         if (e.target.name === "time") setTime(e.target.value);
         if (e.target.name === "service") setService(e.target.value);
         if (e.target.name === "country") setCountry(e.target.value);
@@ -92,25 +88,7 @@ const Home = (props) => {
     
     useEffect(() => {
         setResults(allContacts.filter((contact) => {
-            console.log(contact.country === country, contact.language === language._id)
-            console.log("service: ", service)
-            console.log("time : ", time)
-            console.log(
-                service === "translation" && contact.isTranslator ||
-                service === "callAmbulance"  && contact.callAmbulance ||
-                service === "psySupport"  && contact.psySupport ||
-                service === "medecinesRequest"  && contact.needsMedecines ||
-                service === "supermarket"  && contact.needsSupermarket ||
-                service === "other"  && contact.needsElse
-            );
-            console.log(
-                time === "from0to4" && contact.from0to4 || 
-                time === "from4to8" && contact.from4to8 ||
-                time === "from8to12" && contact.from8to12 ||
-                time === "from12to16" && contact.from12to16 ||
-                time === "from16to20" && contact.from16to20 ||
-                time === "from20to24" && contact.from20to24
-            );
+           
             return (
                 time === "from0to4" && contact.from0to4 || 
                 time === "from4to8" && contact.from4to8 ||
@@ -200,7 +178,7 @@ const Home = (props) => {
             <div className="form-div" id="form-div">
                     <form onChange={onChange} className="flex-column-center">
                     {language.timeSchedule? <h2>{language.timeSchedule}</h2>:<h2>Time Schedule</h2>}
-                    <div className="form-component" id="form-component1">
+                    <div className="form-component flex-column-center-center " id="form-component1">
                         
                         <div className='form-component1-div'>
                             <div >
@@ -240,10 +218,14 @@ const Home = (props) => {
                         <div id="country-div">
                             <h4>{language.country? <p>{language.country}</p>: <p>country</p>}</h4>
                             <div>
-                                <input type="radio" name="country" value="France"/>
-                                {language.France? <p>{language.France}</p>: <p>France</p>}
-                                <input type="radio" name="country" value="Malte"/>
-                                {language.Malte? <p>{language.Malte}</p>: <p>Malte</p>}
+                                <div className="input-div">
+                                    <input type="radio" name="country" value="France" defaultChecked/>
+                                    {language.France? <p>{language.France}</p>: <p>France</p>}
+                                </div>
+                                <div  className="input-div">
+                                    <input type="radio" name="country" value="Malte"/>
+                                    {language.Malte? <p>{language.Malte}</p>: <p>Malte</p>}
+                                </div>
                             </div>
                         </div>
 
@@ -252,7 +234,7 @@ const Home = (props) => {
                     {language.serviceRequested? <h2>{language.serviceRequested}</h2> : <h2>Services required</h2>}
                     
                     <div className="form-component">
-                        <div>
+                        <div class="form-component2-div">
                             {language.medicalSupport ? <h4>{language.medicalSupport}</h4> : <h4>Medical Support</h4>}
                             <div className="input-div">
                                 <input type="radio" name="service" value="translation"/>
@@ -306,7 +288,7 @@ const Home = (props) => {
                             <tr>
                                 <td><a href={`https://wa.me/${changeNumToWhats(contact.phone)}`}>{checkIfTrue(contact.isWhatsApp)}</a></td>
                                 <td><a href={`tel:${contact.phone}`}><FontAwesomeIcon className="FontIcon" icon={faPhone}/></a></td>
-                                <td>{`${language.language}, ${contact.otherLanguage}`}</td>
+                                <td>{` ${contact.otherLanguage} / ${language.language}`}</td>
                                 <td>{contact.city}</td>
                                 <td>{contact.name}</td>
                             </tr>
