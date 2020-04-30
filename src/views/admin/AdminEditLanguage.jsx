@@ -53,6 +53,8 @@ const onChange = async e => {
             <input type="text" name="language" defaultValue={language.language}/>
             <label htmlFor="websiteName">Main title</label>
             <input type="text" name="websiteName" defaultValue={language.websiteName}/>
+            <label htmlFor="advice">link "See safety advice"</label>
+            <input type="text" name="advice" defaultValue={language.advice}/>
             <label htmlFor="enter">Button "enter"</label>
             <input type="text" name="enter" defaultValue={language.enter}/>
             <label htmlFor="websitePresentation">Website Presentation and general conditions</label>

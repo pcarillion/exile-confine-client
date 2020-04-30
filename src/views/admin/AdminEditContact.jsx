@@ -88,7 +88,7 @@ const AdminEditContact = (props) => {
                     </select>
 
                     <label htmlFor="otherLanguage">Other languages</label>
-                    <input type="text" name="otherLanguage"/>
+                    <input type="text" name="otherLanguage" defaultValue={contact.otherLanguage}/>
 
                     <label htmlFor="phone">Phone</label>
                     <input type="text" name="phone" defaultValue={contact.phone}/>
