@@ -164,9 +164,9 @@ const Home = (props) => {
                             <Link className="gen-cond-link" to={`/general-conditions/${language._id}`}>Read more about our general conditions</Link>}
                     </div>
 
-                    {language.advice ?
+                    {/* {language.advice ?
                             <Link className="advice-link" to={`/safety-advice/${language._id}`}>{language.advice}</Link> :
-                            <Link className="advice-link" to={`/safety-advice/${language._id}`}>See safety advice</Link>}
+                            <Link className="advice-link" to={`/safety-advice/${language._id}`}>See safety advice (under construction)</Link>} */}
 
                     {language.enter ? <a href="#form-div" className="enter-btn-1">{language.enter}</a> : <a href='#form-div' className="enter-btn-1">أدخل</a>}
                     {/* <Link to="/signin">Log in</Link> */}
